@@ -63,7 +63,7 @@ describe('Filter testing,', function() {
     element(by.css('.md-click-catcher')).click(); // tutaj jest error na chromie
     applyFilter.click();
     //var before = countBefore ('en');
-    //expect(filterValues).toEqual(filterValues);
+    //expect().toEqual(before);
     expectCountElemsInTable('item in ctrl.filteredTemplates', 15);
     expectCountByFilterProp('en', 15);
     expectfilterIndicator('language');
