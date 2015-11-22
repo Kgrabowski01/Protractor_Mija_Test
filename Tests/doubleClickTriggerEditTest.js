@@ -14,6 +14,8 @@ describe('Double click for edit in designer,', function() {
   var openInDesigner = element(by.css('[ng-click="ctrl.openTemplates()"]'));
   var firstEditableOption = element(by.css('.header-name-wrapper.flex'));
   var errors = element.all(by.cssContainingText('p.alert-content','Template is not editable, because it is not in \'Development\' status.'));
+  var newChapter = element.all(by.css('[ng-click="ctrl.addChapter()"]'));
+
 
   // start -> Functions from filteringtest
   var filterByState = element(by.model('ctrl.filters.state'));
@@ -36,6 +38,11 @@ describe('Double click for edit in designer,', function() {
     expect(elem.getText()).toEqual(status);
   }
 
+  function closeLastTepm () {
+    var closeTemp = element(by.css('[ng-click="designerCtrl.closeTemplate(template)"]'));
+    closeTemp.click();
+  }
+
   it ('Filter by state - "DEVELOPMENT", should be able to edit template, status on bar should be "DEVELOPMENT"', function() {
     filterClick.click();
     filterByState.click();
@@ -49,6 +56,7 @@ describe('Double click for edit in designer,', function() {
     expectDialogSaver();
     expectDesignerStatus('DEVELOPMENT');
     expect(errors.count()).toBe(0);
+    closeLastTepm();
   });
 
 
@@ -61,9 +69,10 @@ describe('Double click for edit in designer,', function() {
 
     firstTemplate.click();
     openInDesigner.click();
-    browser.actions().doubleClick(firstEditableOption).perform();
+    newChapter.click();
     expectDesignerStatus ('INACTIVE');
     expect(errors.count()).toBe(1);
+    closeLastTepm();
   });
 
   it ('Filter by state - "ACTIVE", should not be able to edit template, status on bar should be "ACTIVE"', function() {
@@ -75,9 +84,10 @@ describe('Double click for edit in designer,', function() {
 
     firstTemplate.click();
     openInDesigner.click();
-    browser.actions().doubleClick(firstEditableOption).perform();
+    newChapter.click();
     expectDesignerStatus ('ACTIVE');
     expect(errors.count()).toBe(1);
+    closeLastTepm();
   });
 
 
