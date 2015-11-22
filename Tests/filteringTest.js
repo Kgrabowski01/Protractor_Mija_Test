@@ -40,7 +40,7 @@ describe('Filter testing,', function() {
     expect(elems.count()).toBe(1);
   }
 
-  // var filterValues = {before: 0};
+
   // function countBefore (what) {  //   <--------->           funkcja ktora chce wykorzystac do zliczania elementow w danej kolumnie, przed uruchomieniem filtra.
   //   var mappedVals = element.all(by.repeater('item in ctrl.filteredTemplates').column('item.defaultLanguage')).map(function (elm) {
   //     return elm.getText();
@@ -50,9 +50,9 @@ describe('Filter testing,', function() {
   //     var counted = 0;
   //     var i = 0;
   //     for ( i ; i < arrLength; i++) {
-  //       if (arrLength[0] = what) {counted++;}
+  //       if (arrLength[i] = what) {counted++;}
   //     }
-  //     return tempx = counted; //   <--------->           Ale nie potrafie zwrocic tej wartosci promise do linii 65
+  //     counted //   <--------->           Ale nie potrafie zwrocic tej wartosci promise do linii 65
   //   });
   // }
 
@@ -63,10 +63,9 @@ describe('Filter testing,', function() {
     element(by.css('.md-click-catcher')).click(); // tutaj jest error na chromie
     applyFilter.click();
     //var before = countBefore ('en');
-    //expect(before).toEqual(5);
-
-    expectCountElemsInTable('item in ctrl.filteredTemplates', 5);
-    expectCountByFilterProp('en', 5);
+    //expect(filterValues).toEqual(filterValues);
+    expectCountElemsInTable('item in ctrl.filteredTemplates', 15);
+    expectCountByFilterProp('en', 15);
     expectfilterIndicator('language');
   });
 
@@ -77,8 +76,8 @@ describe('Filter testing,', function() {
     element(by.css('.md-click-catcher')).click(); // tutaj jest problem na chromie
     applyFilter.click();
 
-    expectCountElemsInTable('item in ctrl.filteredTemplates', 3);
-    expectCountByFilterProp('ACTIVE', 3);
+    expectCountElemsInTable('item in ctrl.filteredTemplates', 7);
+    expectCountByFilterProp('ACTIVE', 7);
     expectfilterIndicator('state');
   });
 
@@ -89,8 +88,8 @@ describe('Filter testing,', function() {
     element(by.css('.md-click-catcher')).click(); // tutaj jest problem na chromie
     applyFilter.click();
 
-    expectCountElemsInTable('item in ctrl.filteredTemplates', 12);
-    expectCountByFilterProp('mija', 12);
+    expectCountElemsInTable('item in ctrl.filteredTemplates', 22);
+    expectCountByFilterProp('mija', 22);
     expectfilterIndicator('creator');
   });
 
