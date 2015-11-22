@@ -4,7 +4,14 @@ Description
 allow to sort by any column
 sorting only by one column
 */
-// Nie działa poprawnie, pozwala sortowac po dowolnej kolumnie, ale sortowanie po Revision daje zle wyniki - mialem o to pytac.
+/*
+Nie dziala poprawnie na firefox, repetable widzi tylko 15 pierwszych template.
+Reszta jest pusta przez co sypie sie porownanie stanow przed i po sortowaniu.
+Sortowanie po revision wg. mnie zle dziala.
+Dodatkowe bledy w tym tescie powstaja poprzez inne mechanizmy sorowania pustych wartosci np. Protractor (1,2,3..,'') strona ('',1,2,3...)
+
+Version and revision have the same binding
+*/
 // Start -> sorting column test, User Story #2579
 describe('Sort ascending and descending testing,', function() {
   beforeEach(function() {
@@ -15,7 +22,7 @@ describe('Sort ascending and descending testing,', function() {
     '[ng-click="ctrl.sort = \'name\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
     '[ng-click="ctrl.sort = \'description\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
     '[ng-click="ctrl.sort = \'defaultLanguage\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
-    '[ng-click="ctrl.sort = \'defaultLanguage\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
+    '[ng-click="ctrl.sort = \'version\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')',
     '[ng-click="ctrl.sort = \'tag\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
     '[ng-click="ctrl.sort = \'status\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
     '[ng-click="ctrl.sort = \'createPersonId\'; ctrl.sortDirection = (ctrl.sortDirection === \'DESC\' ? \'ASC\' : \'DESC\')"]',
@@ -36,25 +43,24 @@ describe('Sort ascending and descending testing,', function() {
     element(by.css(column)).click();
   }
 
+
   function expectChceckSort (columnsID) {
-    var mappedVals = element.all(by.repeater('item in ctrl.filteredTemplates').column(columnsID)).map(function (elm) {
+    var mappedVals = element.all(by.repeater('item in ctrl.filteredTemplates track by $index').column(columnsID)).map(function (elm) {
       return elm.getText();
     });
     mappedVals.then(function (textArr) {
       var oldArray = textArr;
       var newArray = textArr.slice(0).sort();
-      var newArrayRev = textArr.slice(0).sort().reverse();
       expect(newArray).toEqual(oldArray);
     });
   }
 
   function expectChceckSortReverse (columnsID) {
-    var mappedVals = element.all(by.repeater('item in ctrl.filteredTemplates').column(columnsID)).map(function (elm) {
+    var mappedVals = element.all(by.repeater('item in ctrl.filteredTemplates track by $index').column(columnsID)).map(function (elm) {
       return elm.getText();
     });
     mappedVals.then(function (textArr) {
       var oldArray = textArr;
-      var newArray = textArr.slice(0).sort();
       var newArrayRev = textArr.slice(0).sort().reverse();
       expect(newArrayRev).toEqual(oldArray);
     });
@@ -179,7 +185,6 @@ describe('Sort ascending and descending testing,', function() {
     sortByColumn(columnsIndicators[7]);
     expectChceckSortReverse(columnsID[7]);
   });
-
 
 });
 // End -> sorting column test, User Story #2579
