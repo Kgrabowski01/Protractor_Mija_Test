@@ -6,7 +6,8 @@ Undo deleted template should set inactive flag to false and status to previous o
 - Nie dziala template delete.
 
 
-User Story #2585
+
+dragNDropToTemplate -> User Story #2585
 'Add new chapter and subchapter, 
 - Nie potrafie kliknac elementu ktory jest ukryty.
 
