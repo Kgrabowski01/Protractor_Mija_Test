@@ -1,0 +1,42 @@
+Do zrobienia:
+
+User Story #2589
+Delete template action should be possible to undo.
+Undo deleted template should set inactive flag to false and status to previous one (DEVELOPMENT, ACTIVE, ...).
+- Nie dziala template delete.
+
+
+User Story #2585
+'Add new chapter and subchapter, 
+- Nie potrafie kliknac elementu ktory jest ukryty.
+
+-----------------------------------------------------
+
+Nie kumam :
+
+User Story #2587 -> Drag&drop within template content - Nie bardzo rozumiem co to ma robic.
+
+-----------------------------------------------------
+Problemy:
+
+newChaptersModal - > 	Klikniecie hidden element aby dodac subchapter, nie moglem sobie z tym poradzic.
+
+filteringTest -> 	Sprawdzanie przed i po przez co dane trzeba zapinac recznie.
+
+ChangeTemplateState -> 	Sprawdzenie przed i po. Ale tutaj nie dziala template delte co utrudnia testowanie.
+
+dragNDropToTemplate -> 	Wg. mnie  nie dziala - drag&drop of templates to category (on list of templates)
+			Druga czesc testu, dziala poprawnie - zgodnie z oczekiwaniami.
+
+sortingColumnTest -> 	Nie dziala poprawnie na firefox, repeater widzi tylko 15 pierwszych template.
+			Reszta jest pusta przez co sypie sie porownanie stanow przed i po sortowaniu.
+			Sortowanie po revision wg. mnie zle dziala.
+			Dodatkowe bledy w tym tescie powstaja poprzez inne mechanizmy sortowania pustych wartosci np. Protractor (1,2,3..,'') strona ('',1,2,3...)
+
+-----------------------------------------------------
+Wg. mnie nie dziala:
+
+- Live search, User Story #2577.
+- Sortowanie po revision, User Story #2579. Version i revision maja to samo bindowanie.
+- Template delete.
+- Drag&drop of templates to category, User Story #2586.
