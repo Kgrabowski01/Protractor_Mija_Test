@@ -9,7 +9,7 @@ Undo deleted template should set inactive flag to false and status to previous o
 
 dragNDropToTemplate -> User Story #2585
 'Add new chapter and subchapter, 
-- Nie potrafie kliknac elementu ktory jest ukryty.
+- Nie potrafie kliknac elementu (+) ktory jest ukryty aby dodać subchapter. Pokazuje sie on w designerze po najechaniu na tytul chaptera.
 
 -----------------------------------------------------
 
